@@ -1,213 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+      body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background-color: #f8f9fa;
+          margin: 0;
+          padding: 0;
+      }
 
-    .header {
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        padding: 10px;
-    }
+      .header {
+          background-color: #343a40;
+          color: #fff;
+          text-align: center;
+          padding: 12px 0;
+          margin-bottom: 20px;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
 
-    .search-container {
-        display: flex;
-        justify-content: space-between;
-        margin: 20px;
-    }
+      .search-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 20px;
+      }
 
-    #search {
-        width: 70%;
-        padding: 8px;
-        font-size: 14px;
-    }
+      #search {
+          width: 70%;
+          padding: 10px;
+          font-size: 16px;
+          border: 2px solid #343a40;
+          border-radius: 4px;
+          outline: none;
+      }
 
-    .btn {
-        width: 20%;
-        padding: 8px;
-        cursor: pointer;
-        font-size: 20px;
-        font-weight: 500;
-        background-color: #4caf50;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-    }
+      .btn {
+          width: 15%;
+          margin-left: 10px;
+          padding: 10px;
+          font-size: 16px;
+          font-weight: 500;
+          background-color: #343a40;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
 
-    #view {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        margin: 20px;
-    }
+      .btn:hover {
+          background-color: #23272b;
+      }
 
-    .product {
-        background-color: #fff;
-        padding: 12px;
-        margin: 15px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        width: 250px;
-        text-align: center;
-    }
-    .product img {
-        width: 170px;
-        height: 220px;
-        object-fit: cover;
-    }
+      #view {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          margin: 0 auto;
+          max-width: 1200px;
+      }
 
-    .product h2 {
-        margin-top: 10px;
-        color: #333;
-    }
+      .product {
+          background-color: #fff;
+          padding: 20px;
+          margin: 15px;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          width: 250px;
+          text-align: center;
+          transition: transform 0.3s ease;
+      }
 
-    .product p {
-        color: #555;
-    }
+      .product:hover {
+          transform: translateY(-5px);
+      }
 
-    .product button {
-        background-color: #4caf50;
-        color: #fff;
-        padding: 10px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-        width: 80%;
-        margin-top: 10px;
-    }
+      .product img {
+          width: 170px;
+          height: 220px;
+          object-fit: cover;
+          border-radius: 8px;
+          margin-bottom: 10px;
+      }
 
-    .product button:hover {
-        background-color: #45a049;
-    }
+      .product h2 {
+          margin-top: 10px;
+          color: #343a40;
+          font-size: 20px;
+          font-weight: bold;
+      }
 
-    #countcart {
-        position: fixed;
-        width: 65px;
-        height: 65px;
-        line-height: 65px;
-        top: 0;
-        right: 10px;
-        background-color: #4caf50;
-        color: #fff;
-        border-radius: 50%;
-        font-size: 18px;
-    }
-</style>
+      .product p {
+          color: #6c757d;
+          margin-bottom: 10px;
+          font-size: 14px;
+      }
+
+      .product button {
+          background-color: #343a40;
+          color: #fff;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+          transition: background-color 0.3s ease;
+      }
+
+      .product button:hover {
+          background-color: #23272b;
+      }
+
+      #countcart {
+          position: fixed;
+          width: 55px;
+          height: 55px;
+          line-height: 55px;
+          top: 10px;
+          right: 10px;
+          background-color: #343a40;
+          color: #fff;
+          border-radius: 50%;
+          font-size: 16px;
+          text-align: center;
+          text-decoration: none;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+  </style>
+
 </head>
 <body>
- <div class="header">
-  <h2>Product List</h2>
-  <a href="cart.html" target="_blank">
-    <h1 id="countcart">Cart(0)</h1>
-  </a>
-</div>
-<div class="search-container">
-  <input type="text" id="search" placeholder="Serch By Name OR Price" />
-  <input type="button" onclick="return searching()" placeholder="Enter char and digit" class="btn" value="Serch">
-</div>
-  
-  <div id="view"></div>
-  
-  
-  <script>
-  
-  
-    var oldcat1 = JSON.parse(localStorage.getItem('cartdata')) || [];
-    document.getElementById("countcart").innerHTML = oldcat1 == null ? "cart(0)" : `cart(${oldcat1.length})`;
-  
-    var product = JSON.parse(localStorage.getItem('product'));
-  
-    var list = `<div style = "display : flex; flex-wrap: wrap;">`;
-    product.forEach((v, i) => {
-      list += `<div style = "margin-left : 15px" class="product">`;
-      list += `<img src="img/${v.imgname}">`;
-      list += `<h2>Product : ${v.name}</h2>`;
-      list += `<p>Price : ${v.price},<span>Old-price :${v.oldpr}</span></p>`;
-      list += `<p>Decs : ${v.decs}</p>`;
-      list += `<p>Aailable-Stock : ${v.stock}</p>`;
-      list += `<button onclick="return addcart(${v.id})">ADD Cart</button>`;
-      list += `</div>`;
-    });
-  
-    list += `</div>`;
-    document.getElementById("view").innerHTML = list;
-  
-  
-    var cart = [];
-  
-    function addcart(id) {
-  
-      var oldcart = JSON.parse(localStorage.getItem('cartdata')) || [];
-  
-      var index = oldcart.findIndex((v, i) => v.id == id);
-  
-      if (index != -1) {
-  
-        alert("this product is already in cart");
-  
-      } else {
-  
-        product.forEach((v, i) => {
-  
-          if (id == v.id) {
-            delete (v.oldpr);
-            delete (v.decs);
-            delete (v.stock);
-            v.qunatity = 1;
-            cart.push(v);
-          }
-  
-        });
-  
-        document.getElementById("countcart").innerHTML = `cart(${cart.length})`;
-        localStorage.setItem('cartdata', JSON.stringify(cart));
-      }
-  
-    }
-  
-    function searching() {
-      var se = document.getElementById('search').value;
-      let prosearch = product.filter((v, i) => {
-        if (v.name.match(se) || v.price.match(se)) {
-          return v;
-      
-        // else {
-        //   console.log(v);
-        // }
-        
+    <div class="header">
+        <h1>Product List</h1>
+        <a href="cart.html" target="_blank">
+            <div id="countcart">Cart(0)</div>
+        </a>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search By Name or Price">
+        <input type="button" onclick="searching()" class="btn" value="Search">
+    </div>
+
+    <div id="view"></div>
+
+    <script>
+        var product = JSON.parse(localStorage.getItem('product')) || [];
+
+        function displayProducts(products) {
+            var list = '<div style="display: flex; flex-wrap: wrap;">';
+            products.forEach(function(v, i) {
+                list += '<div style="margin-left: 15px" class="product">';
+                list += '<img src="img/' + v.imgname + '" alt="' + v.name + '">';
+                list += '<h2>' + v.name + '</h2>';
+                list += '<p>Price: ' + v.price + ', Old Price: ' + v.oldpr + '</p>';
+                list += '<p>Description: ' + v.decs + '</p>';
+                list += '<p>Available Stock: ' + v.stock + '</p>';
+                list += '<button onclick="addcart(' + v.id + ')">Add to Cart</button>';
+                list += '</div>';
+            });
+            list += '</div>';
+            document.getElementById('view').innerHTML = list;
         }
-        })
-        var list = `<div style = "display : flex; flex-wrap: wrap;">`;
-          prosearch.forEach((v, i) => {
-            list += `<div style = "margin-left : 15px" class="product">`;
-            list += `<img src="img/${v.imgname}" height = '100'>`;
-            list += `<h2>${v.name}</h2>`;
-            list += `<p>${v.price},<span>${v.oldpr}</p>`;
-            list += `<p>${v.decs}</p>`;
-            list += `<p>${v.stock}</p>`;
-            list += `<button onclick="return addcart(${v.id})">ADD Cart</button>`;
-            list += `</div>`;
-          });
-  
-          list += `</div>`;
-          document.getElementById("view").innerHTML = list;
-  
-    }
-  
-  
-  
-  </script>
-  
+
+        function addcart(id) {
+            var cart = JSON.parse(localStorage.getItem('cartdata')) || [];
+            var index = cart.findIndex(function(v) {
+                return v.id == id;
+            });
+            if (index != -1) {
+                alert('This product is already in the cart.');
+            } else {
+                var selectedProduct = product.find(function(v) {
+                    return v.id == id;
+                });
+                if (selectedProduct) {
+                    delete selectedProduct.oldpr;
+                    delete selectedProduct.decs;
+                    delete selectedProduct.stock;
+                    selectedProduct.qunatity = 1;
+                    cart.push(selectedProduct);
+                    localStorage.setItem('cartdata', JSON.stringify(cart));
+                    document.getElementById('countcart').innerHTML = 'Cart(' + cart.length + ')';
+                }
+            }
+        }
+
+        function searching() {
+            var searchValue = document.getElementById('search').value.trim().toLowerCase();
+            var filteredProducts = product.filter(function(v) {
+                return v.name.toLowerCase().includes(searchValue) || v.price.toString().includes(searchValue);
+            });
+            displayProducts(filteredProducts);
+        }
+
+        displayProducts(product);
+    </script>
 </body>
 </html>
-
